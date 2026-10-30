@@ -446,19 +446,24 @@ body.has-cursor,
   0% { transform: translateY(-100%); }
   60%, 100% { transform: translateY(100%); }
 }
-.hero__curtain {
+/* Manifesto paneli üstüne kayarken hero kararır */
+.hero__shade {
   position: absolute;
   inset: 0;
-  background: var(--ivory);
-  clip-path: inset(100% 0 0 0);
+  background: var(--ink);
+  opacity: 0;
   z-index: 5;
+  pointer-events: none;
 }
+/* Hero sabitken kameranın geri çekildiği kısa kaydırma aralığı */
+.hero-spacer { height: 70vh; height: 70svh; }
 
 /* ==========================================================
    II. MANİFESTO
    ========================================================== */
 .manifesto {
   position: relative;
+  z-index: 2;
   min-height: 100vh;
   min-height: 100svh;
   background: var(--ivory);
@@ -1007,7 +1012,7 @@ body.has-cursor,
   .hero__company { font-size: 24px; margin-top: 4px; }
   .hero__scroll { display: none; }
 
-  .manifesto { padding: 110px var(--gutter); }
+  .manifesto { justify-content: flex-start; padding: 22svh var(--gutter) 90px; }
   .manifesto__sign { align-self: flex-start; }
 
   .bio__inner { grid-template-columns: 1fr; padding-top: 110px; gap: 56px; }

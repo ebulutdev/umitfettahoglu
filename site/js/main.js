@@ -140,18 +140,32 @@
     setTimeout(startIntro, 3500); // yavaş bağlantıda perdeyi sonsuza kadar tutma
   }
 
-  /* ---------- I. Hero: kamera geri çekilir, perde iner ---------- */
-  gsap.timeline({
-    scrollTrigger: { trigger: ".hero", start: "top top", end: "+=150%", scrub: 1, pin: true, anticipatePin: 1 },
-  })
-    .to(".hero__bg img", { scale: 1.0, yPercent: 6, ease: "none" }, 0)
+  /* ---------- I. Hero → Yaklaşım ----------
+     Hero, manifesto paneli tamamen üstüne gelene kadar sabit kalır.
+     Önce kamera geri çekilir; ardından manifesto yukarı kayarak hero'yu örter
+     ve hero kararıp geri çekilir. Arada boş kaydırma kalmaz. */
+  ScrollTrigger.create({
+    trigger: ".hero",
+    start: "top top",
+    endTrigger: ".manifesto",
+    end: "top top",
+    pin: true,
+    pinSpacing: false,
+    anticipatePin: 1,
+  });
+
+  gsap.timeline({ scrollTrigger: { trigger: ".hero-spacer", start: "top bottom", end: "bottom bottom", scrub: 1 } })
+    .to(".hero__bg img", { scale: 1.08, yPercent: 3, ease: "none" }, 0) // kenarlar her zaman dolu kalır
     .to(".hero__l1", { xPercent: -42, ease: "none" }, 0)
     .to(".hero__l2", { xPercent: 26, ease: "none" }, 0)
     .to(".hero__stage", { scale: 1.14, yPercent: 4, ease: "none" }, 0)
-    // Unvan, perde inene kadar sahnede kalır ve perdeyle birlikte çekilir
-    .to(".hero__scroll", { autoAlpha: 0, ease: "none", duration: 0.15 }, 0)
-    .to(".hero__meta", { autoAlpha: 0, y: -30, ease: "power1.in", duration: 0.2 }, 0.42)
-    .to(".hero__curtain", { clipPath: "inset(0% 0 0 0)", ease: "power2.inOut", duration: 0.45 }, 0.55);
+    .to(".hero__scroll", { autoAlpha: 0, ease: "none", duration: 0.25 }, 0);
+
+  // Unvan, manifesto paneli yükselmeye başlayınca sahneden çekilir
+  gsap.timeline({ scrollTrigger: { trigger: ".manifesto", start: "top bottom", end: "top top", scrub: true } })
+    .to(".hero__meta", { autoAlpha: 0, y: -30, ease: "power1.in", duration: 0.35 }, 0)
+    .to(".hero__shade", { opacity: 0.8, ease: "none", duration: 1 }, 0)
+    .to(".hero__name", { yPercent: -18, ease: "none", duration: 1 }, 0);
 
   /* Üst üste binen paneller: bölüm sonunda sabitlenir, sonraki bölüm
      üstünden geçerken geri çekilip kararır. Boşluk eklemez (pinSpacing: false),
