@@ -1030,15 +1030,49 @@ body.has-cursor,
 .group__lead { color: var(--text-dim); max-width: 50ch; }
 
 .sectors { margin-top: 110px; border-top: 1px solid var(--line); }
-.sectors li {
-  position: relative;
+.sectors li { position: relative; border-bottom: 1px solid var(--line); overflow: hidden; }
+.sector__toggle {
+  width: 100%;
   display: flex;
   align-items: baseline;
   gap: 40px;
   padding: 30px 0;
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
+  background: none;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
+.sector__plus { position: relative; margin-left: auto; align-self: center; width: 22px; height: 22px; flex: none; }
+.sector__plus::before,
+.sector__plus::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--brass);
+  transition: transform 0.6s var(--ease);
+}
+.sector__plus::after { transform: rotate(90deg); }
+.is-open .sector__plus::after { transform: rotate(0deg); }
+/* Yükseklik animasyonu: 0fr → 1fr */
+.sector__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.7s var(--ease); }
+.sector__panel > div { overflow: hidden; }
+.sector__panel p {
+  max-width: 60ch;
+  padding: 0 0 34px 70px;
+  color: var(--text-dim);
+  font-size: 17px;
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+}
+.is-open .sector__panel { grid-template-rows: 1fr; }
+.is-open .sector__panel p { opacity: 1; transform: none; transition-delay: 0.15s; }
+.is-open h3 { color: var(--brass); }
 .sectors span { flex: none; font-size: var(--label); letter-spacing: 0.24em; color: var(--brass); width: 30px; }
 .sectors h3 {
   font-family: var(--serif);
@@ -1257,7 +1291,8 @@ body.has-cursor,
   .group { padding: 120px var(--gutter) 100px; }
   .group__head { grid-template-columns: 1fr; gap: 28px; }
   .sectors { margin-top: 64px; }
-  .sectors li { gap: 18px; padding: 22px 0; }
+  .sector__toggle { gap: 18px; padding: 22px 0; }
+  .sector__panel p { padding: 0 0 26px 48px; font-size: 16px; }
   .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; margin-top: 70px; }
   .brands li { height: 64px; }
   .brands .brands__wide img { width: min(88%, 160px); }

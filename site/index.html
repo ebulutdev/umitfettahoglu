@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=21">
 </head>
 <body class="is-loading">
 
@@ -200,10 +200,7 @@
         <div class="acts__stage">
           <article class="act">
             <div class="act__frame">
-              <img src="assets/img/act-yikim.webp" width="720" height="1280" alt="Aytekin Kent Sitesi'nde yıkım çalışması" loading="lazy" decoding="async">
-              <button class="play" type="button" data-video="2Kua-9_4P1Q" data-ratio="0.5625" aria-label="Videoyu izle: Her yıkım, yeni bir başlangıcın habercisi">
-                <span class="play__icon" aria-hidden="true"></span><span class="play__label">İzle</span>
-              </button>
+              <img src="assets/img/act-yikim.webp?v=2" width="1080" height="1920" alt="Aytekin Kent Sitesi'nde yıkım çalışması" loading="lazy" decoding="async">
             </div>
             <div class="act__caption">
               <span class="act__no">I</span>
@@ -214,10 +211,7 @@
           </article>
           <article class="act">
             <div class="act__frame">
-              <img src="assets/img/act-santiye.webp" width="720" height="1280" alt="Şantiyede kazı çalışması" loading="lazy" decoding="async">
-              <button class="play" type="button" data-video="COFq1fdF8uM" data-ratio="0.5625" aria-label="Videoyu izle: Yeni şantiyelerimiz, yeni başlangıçlar">
-                <span class="play__icon" aria-hidden="true"></span><span class="play__label">İzle</span>
-              </button>
+              <img src="assets/img/act-santiye.webp?v=2" width="1080" height="1920" alt="Şantiyede kazı çalışması" loading="lazy" decoding="async">
             </div>
             <div class="act__caption">
               <span class="act__no">II</span>
@@ -228,10 +222,7 @@
           </article>
           <article class="act">
             <div class="act__frame">
-              <img src="assets/img/act-yukselis.webp" width="720" height="1280" alt="Kule vinç kabininden görünüm" loading="lazy" decoding="async">
-              <button class="play" type="button" data-video="21Rv8Lkst70" data-ratio="0.5625" aria-label="Videoyu izle: Kule vinç operatörümüz">
-                <span class="play__icon" aria-hidden="true"></span><span class="play__label">İzle</span>
-              </button>
+              <img src="assets/img/act-yukselis.webp?v=2" width="1080" height="1920" alt="Kule vinç kabininden görünüm" loading="lazy" decoding="async">
             </div>
             <div class="act__caption">
               <span class="act__no">III</span>
@@ -242,10 +233,7 @@
           </article>
           <article class="act">
             <div class="act__frame">
-              <img src="assets/img/act-teslim.webp" width="720" height="1280" alt="Teslime hazır dairenin banyosu" loading="lazy" decoding="async">
-              <button class="play" type="button" data-video="MrpmiSlVOdk" data-ratio="0.5625" aria-label="Videoyu izle: Dumlupınar Apartmanı'nda daireler teslime hazır">
-                <span class="play__icon" aria-hidden="true"></span><span class="play__label">İzle</span>
-              </button>
+              <img src="assets/img/act-teslim.webp?v=2" width="1080" height="1920" alt="Teslime hazır dairenin banyosu" loading="lazy" decoding="async">
             </div>
             <div class="act__caption">
               <span class="act__no">IV</span>
@@ -282,11 +270,41 @@
         <p class="group__lead">İnşaat ve kentsel dönüşümün yanı sıra otomotiv, tekstil ve restoran sektörlerinde yatırımlar. Ümit Fettahoğlu, bu iş kollarının kurumsal entegrasyonu, büyüme stratejileri ve operasyonel verimliliğinde aktif yönetsel sorumluluk üstleniyor.</p>
       </div>
       <ol class="sectors">
-        <li><span>01</span><h3>İnşaat &amp; Kentsel Dönüşüm</h3><i></i></li>
-        <li><span>02</span><h3>Mimarlık</h3><i></i></li>
-        <li><span>03</span><h3>Otomotiv</h3><i></i></li>
-        <li><span>04</span><h3>Tekstil</h3><i></i></li>
-        <li><span>05</span><h3>Restoran</h3><i></i></li>
+        <li>
+          <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-01">
+            <span>01</span><h3>İnşaat &amp; Kentsel Dönüşüm</h3><b class="sector__plus" aria-hidden="true"></b>
+          </button>
+          <div class="sector__panel" id="sector-01"><div><p>Grubun ana faaliyet alanı. 1956’da kurulan Fettahoğlu Yapı’nın birikimiyle İstanbul genelinde 22 parselde, yaklaşık 200.000 m² büyüklüğünde ve yaklaşık 2.000 bağımsız bölümden oluşan projeler eş zamanlı geliştiriliyor.</p></div></div>
+          <i></i>
+        </li>
+        <li>
+          <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-02">
+            <span>02</span><h3>Mimarlık</h3><b class="sector__plus" aria-hidden="true"></b>
+          </button>
+          <div class="sector__panel" id="sector-02"><div><p>Mimari tasarım ve iç mimarlık süreçleri, grup bünyesindeki AST Mimarlık tarafından yürütülüyor.</p></div></div>
+          <i></i>
+        </li>
+        <li>
+          <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-03">
+            <span>03</span><h3>Otomotiv</h3><b class="sector__plus" aria-hidden="true"></b>
+          </button>
+          <div class="sector__panel" id="sector-03"><div><p>Grubun otomotiv alanındaki yatırımları; Safe Oto ve Fetsan Motors markalarıyla sürdürülüyor.</p></div></div>
+          <i></i>
+        </li>
+        <li>
+          <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-04">
+            <span>04</span><h3>Tekstil</h3><b class="sector__plus" aria-hidden="true"></b>
+          </button>
+          <div class="sector__panel" id="sector-04"><div><p>Tekstil sektöründeki faaliyetler, grup iştiraki Zalluna Tekstil çatısı altında yürütülüyor.</p></div></div>
+          <i></i>
+        </li>
+        <li>
+          <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-05">
+            <span>05</span><h3>Restoran</h3><b class="sector__plus" aria-hidden="true"></b>
+          </button>
+          <div class="sector__panel" id="sector-05"><div><p>FETSAN Grup’un çok sektörlü yapısının bir parçası olarak restoran sektöründe yatırımlar bulunuyor.</p></div></div>
+          <i></i>
+        </li>
       </ol>
       <ul class="brands" aria-label="Grup markaları">
         <li><img src="assets/img/brand-fettahoglu-yapi.png" width="445" height="426" alt="Fettahoğlu Yapı" loading="lazy" decoding="async"></li>
@@ -358,6 +376,6 @@
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/vendor/lenis.min.js" defer></script>
-  <script src="js/main.js?v=19" defer></script>
+  <script src="js/main.js?v=21" defer></script>
 </body>
 </html>

@@ -103,6 +103,22 @@
     el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(" ");
   });
 
+  /* ---------- sektörler: tıklanınca kısa açıklama açılır (aynı anda tek satır) ---------- */
+  $$(".sector__toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.parentElement;
+      const open = !item.classList.contains("is-open");
+      $$(".sectors li.is-open").forEach((li) => {
+        li.classList.remove("is-open");
+        $(".sector__toggle", li).setAttribute("aria-expanded", "false");
+      });
+      item.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      // Açılan panel sayfa yüksekliğini değiştirir: tetik noktalarını güncelle
+      if (window.ScrollTrigger) setTimeout(() => ScrollTrigger.refresh(), 750);
+    });
+  });
+
   /* ---------- video penceresi: YouTube oynatıcısı yalnızca tıklanınca yüklenir ----------
      youtube-nocookie alan adı, izlenmeden çerez bırakmaz. */
   const lightbox = $(".lightbox");
@@ -393,7 +409,7 @@
       ticks.forEach((t, k) => t.classList.toggle("is-active", k <= i));
     };
     mark(0);
-    gsap.set(frames.slice(1), { clipPath: "inset(100% 0% 0% 0%)" });
+    gsap.set(frames.slice(1), { autoAlpha: 0 });
     gsap.set(caps.slice(1), { autoAlpha: 0, y: 40 });
 
     const tl = gsap.timeline({
@@ -409,9 +425,11 @@
     });
 
     frames.forEach((frame, i) => {
-      tl.fromTo($("img", frame), { scale: 1.12 }, { scale: 1, ease: "none", duration: 1 }, i);
+      tl.fromTo($("img", frame), { scale: 1.05 }, { scale: 1, ease: "none", duration: 1 }, i);
       if (i === 0) return;
-      tl.to(frame, { clipPath: "inset(0% 0% 0% 0%)", ease: "power2.inOut", duration: 0.6 }, i - 0.3)
+      // Görseller üst üste binmez: önceki tamamen kaybolur, sonra yenisi belirir
+      tl.to(frames[i - 1], { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, i - 0.3)
+        .to(frame, { autoAlpha: 1, duration: 0.3, ease: "power1.out" }, i - 0.05)
         .to(caps[i - 1], { autoAlpha: 0, y: -30, duration: 0.25, ease: "power2.in" }, i - 0.3)
         .to(caps[i], { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, i);
     });
