@@ -103,6 +103,35 @@
     el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(" ");
   });
 
+  /* ---------- video penceresi: YouTube oynatıcısı yalnızca tıklanınca yüklenir ----------
+     youtube-nocookie alan adı, izlenmeden çerez bırakmaz. */
+  const lightbox = $(".lightbox");
+  const lbFrame = $(".lightbox__frame");
+  let lastTrigger = null;
+
+  const openVideo = (btn) => {
+    lastTrigger = btn;
+    lbFrame.style.setProperty("--r", btn.dataset.ratio || "1.7778");
+    const params = "autoplay=1&rel=0&playsinline=1&modestbranding=1";
+    lbFrame.innerHTML =
+      `<iframe src="https://www.youtube-nocookie.com/embed/${btn.dataset.video}?${params}" ` +
+      `title="${btn.getAttribute("aria-label") || "Video"}" ` +
+      `allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    lightbox.showModal();
+    lenis?.stop();
+  };
+
+  $$("[data-video]").forEach((btn) => btn.addEventListener("click", () => openVideo(btn)));
+  $(".lightbox__close").addEventListener("click", () => lightbox.close());
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.close();
+  });
+  lightbox.addEventListener("close", () => {
+    lbFrame.innerHTML = ""; // videoyu durdurur ve belleği boşaltır
+    lenis?.start();
+    lastTrigger?.focus();
+  });
+
   if (!motion) {
     dropLoader();
     return;
@@ -351,6 +380,54 @@
     });
   });
 
+  /* ---------- V. Sahada: dört perde tek karede art arda ----------
+     Her yeni perde alttan yukarı silinerek öncekinin üstüne gelir. */
+  mm.add("(min-width: 901px)", () => {
+    const frames = $$(".act__frame");
+    const caps = $$(".act__caption");
+    const ticks = $$(".acts__ticks i");
+    let shown = -1;
+    const mark = (i) => {
+      if (i === shown) return;
+      shown = i;
+      ticks.forEach((t, k) => t.classList.toggle("is-active", k <= i));
+    };
+    mark(0);
+    gsap.set(frames.slice(1), { clipPath: "inset(100% 0% 0% 0%)" });
+    gsap.set(caps.slice(1), { autoAlpha: 0, y: 40 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".acts",
+        start: "top top",
+        end: "+=" + frames.length * 75 + "%",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: (self) => mark(Math.min(frames.length - 1, Math.floor(self.progress * frames.length * 0.999))),
+      },
+    });
+
+    frames.forEach((frame, i) => {
+      tl.fromTo($("img", frame), { scale: 1.12 }, { scale: 1, ease: "none", duration: 1 }, i);
+      if (i === 0) return;
+      tl.to(frame, { clipPath: "inset(0% 0% 0% 0%)", ease: "power2.inOut", duration: 0.6 }, i - 0.3)
+        .to(caps[i - 1], { autoAlpha: 0, y: -30, duration: 0.25, ease: "power2.in" }, i - 0.3)
+        .to(caps[i], { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, i);
+    });
+  });
+
+  mm.add("(max-width: 900px)", () => {
+    $$(".act__frame").forEach((frame) => {
+      gsap.fromTo(frame, { clipPath: "inset(100% 0% 0% 0%)" }, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 1.4,
+        ease: "expo.out",
+        scrollTrigger: { trigger: frame, start: "top 85%" },
+      });
+    });
+  });
+
   /* ---------- VI. Sahne: kare genişleyerek tam ekran olur ---------- */
   mm.add({ desktop: "(min-width: 901px)", mobile: "(max-width: 900px)" }, (ctx) => {
     const from = ctx.conditions.desktop ? "inset(24% 32% 24% 32%)" : "inset(18% 10% 18% 10%)";
@@ -360,7 +437,8 @@
       .fromTo(".scene__frame", { clipPath: from }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none" }, 0)
       .fromTo(".scene__frame img", { scale: 1.35 }, { scale: 1, ease: "none" }, 0)
       .fromTo(".scene__year", { yPercent: 30, autoAlpha: 0.2 }, { yPercent: -10, autoAlpha: 1, ease: "none" }, 0)
-      .fromTo(".scene__caption p", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, ease: "none", duration: 0.4 }, 0.55);
+      .fromTo(".scene__caption p", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, ease: "none", duration: 0.4 }, 0.55)
+      .fromTo(".film-cta", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, ease: "none", duration: 0.3 }, 0.72);
   });
 
   /* ---------- VII. Grup ---------- */
