@@ -5,7 +5,11 @@
 (() => {
   const $ = (s, ctx = document) => ctx.querySelector(s);
   const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
-  const formatNum = (n) => Math.round(n).toLocaleString("tr-TR");
+  // Dil: metinler animasyonlar kurulmadan önce çevrilir
+  const i18n = window.I18N || { lang: "tr", t: (s) => s, apply: () => {} };
+  i18n.apply();
+  const t = i18n.t;
+  const formatNum = (n) => Math.round(n).toLocaleString(i18n.lang === "en" ? "en-GB" : i18n.lang === "fr" ? "fr-FR" : i18n.lang === "de" ? "de-DE" : "tr-TR");
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hasLibs = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
@@ -27,7 +31,7 @@
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     if (typeof window.Lenis !== "undefined") {
-      lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.9 });
+      lenis = new Lenis({ lerp: 0.065, wheelMultiplier: 0.7, touchMultiplier: 1.2 }); // daha sakin, kontrollü kaydırma
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add((t) => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
@@ -49,7 +53,7 @@
   const setMenu = (open) => {
     document.body.classList.toggle("menu-open", open);
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Menüyü kapat" : "Menüyü aç");
+    toggle.setAttribute("aria-label", open ? t("Menüyü kapat") : t("Menüyü aç"));
     menu.setAttribute("aria-hidden", String(!open));
     menu.inert = !open;
     if (lenis) open ? lenis.stop() : lenis.start();
@@ -159,7 +163,11 @@
 
   const intro = gsap.timeline({ paused: true });
   intro
-    .to(".loader__bar i", { scaleX: 1, duration: 1.3, ease: "power2.inOut" })
+    .from(".loader__name", { autoAlpha: 0, duration: 0.01 })
+    .to(".loader__sign", { "--pen": "0%", duration: 2.1, ease: "power1.inOut" }) // imza yazılır
+    .to(".loader__bar i", { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, "-=0.35") // altı çizilir
+    .to(".loader__name", { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, "-=0.4")
+    .to({}, { duration: 0.35 })
     .to(".loader__inner", { autoAlpha: 0, y: -20, duration: 0.6, ease: "power2.in" })
     .to(".loader", { yPercent: -100, duration: 1.2, ease: "expo.inOut" })
     .from(".hero__bg", { scale: 1.25, duration: 2.4, ease: "expo.out" }, "-=0.9")
@@ -265,9 +273,10 @@
       scrollTrigger: {
         trigger: ".bio",
         start: "top top",
-        end: "+=240%",
-        scrub: 1,
+        end: "+=330%",
+        scrub: 1.2,
         pin: true,
+        snap: { snapTo: "labelsDirectional", duration: { min: 0.35, max: 0.9 }, delay: 0.12, ease: "power2.inOut" },
         onUpdate: (self) => {
           const i = Math.min(chapters.length - 1, Math.floor(self.progress * chapters.length * 0.999));
           if (i !== shown) {
@@ -284,6 +293,7 @@
       .to(".bio__progress b", { scaleX: 1, ease: "none", duration: 3 }, 0);
 
     chapters.forEach((ch, i) => {
+      tl.addLabel("chapter" + i, i === 0 ? 0 : i + 0.35); // her bölümün tam okunur olduğu an
       if (i === 0) return;
       // Önceki bölüm tamamen çıkmadan yenisi girmez: metinler üst üste binmez
       tl.to(chapters[i - 1], { autoAlpha: 0, y: -40, duration: 0.25, ease: "power2.in" }, i - 0.3)
@@ -355,8 +365,8 @@
       scrollTrigger: {
         trigger: ".projects",
         start: "top top",
-        end: () => "+=" + distance(),
-        scrub: 1,
+        end: () => "+=" + distance() * 1.25,
+        scrub: 1.2,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -416,8 +426,9 @@
       scrollTrigger: {
         trigger: ".acts",
         start: "top top",
-        end: "+=" + frames.length * 75 + "%",
-        scrub: 1,
+        end: "+=" + frames.length * 110 + "%",
+        scrub: 1.2,
+        snap: { snapTo: "labelsDirectional", duration: { min: 0.35, max: 0.9 }, delay: 0.12, ease: "power2.inOut" },
         pin: true,
         anticipatePin: 1,
         onUpdate: (self) => mark(Math.min(frames.length - 1, Math.floor(self.progress * frames.length * 0.999))),
@@ -425,6 +436,7 @@
     });
 
     frames.forEach((frame, i) => {
+      tl.addLabel("act" + i, i === 0 ? 0 : i + 0.3);
       tl.fromTo($("img", frame), { scale: 1.05 }, { scale: 1, ease: "none", duration: 1 }, i);
       if (i === 0) return;
       // Görseller üst üste binmez: önceki tamamen kaybolur, sonra yenisi belirir
@@ -450,7 +462,7 @@
   mm.add({ desktop: "(min-width: 901px)", mobile: "(max-width: 900px)" }, (ctx) => {
     const from = ctx.conditions.desktop ? "inset(24% 32% 24% 32%)" : "inset(18% 10% 18% 10%)";
     gsap.timeline({
-      scrollTrigger: { trigger: ".scene", start: "top top", end: "+=120%", scrub: 1, pin: true },
+      scrollTrigger: { trigger: ".scene", start: "top top", end: "+=160%", scrub: 1.2, pin: true },
     })
       .fromTo(".scene__frame", { clipPath: from }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none" }, 0)
       .fromTo(".scene__frame img", { scale: 1.35 }, { scale: 1, ease: "none" }, 0)

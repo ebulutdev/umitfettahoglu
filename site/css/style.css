@@ -221,14 +221,23 @@ body.has-cursor,
   display: grid;
   place-items: center;
 }
-.loader__inner { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.loader__mono {
-  font-family: var(--serif);
-  font-size: 64px;
-  font-weight: 300;
-  letter-spacing: 0.08em;
+.loader__inner { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+/* İmza: kalemle yazılıyormuş gibi soldan sağa açılan maske */
+.loader__sign {
+  --pen: 100%;
+  font-family: "Great Vibes", "Brush Script MT", cursive;
+  font-size: clamp(54px, 9vw, 104px);
+  line-height: 1.25;
+  padding: 0 0.15em;
   color: var(--brass);
-  line-height: 1;
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+          mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+  -webkit-mask-size: 260% 100%;
+          mask-size: 260% 100%;
+  -webkit-mask-position: var(--pen) 0;
+          mask-position: var(--pen) 0;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
 }
 .loader__name {
   font-size: var(--label);
@@ -236,7 +245,7 @@ body.has-cursor,
   text-transform: uppercase;
   color: var(--stone);
 }
-.loader__bar { width: 160px; height: 1px; background: var(--line); overflow: hidden; }
+.loader__bar { width: min(300px, 60vw); height: 1px; margin-top: -6px; background: transparent; overflow: hidden; }
 .loader__bar i { display: block; height: 100%; width: 100%; background: var(--brass); transform: scaleX(0); transform-origin: left; }
 
 /* ---------- navigasyon ---------- */
@@ -263,7 +272,7 @@ body.has-cursor,
   font-size: 22px;
   letter-spacing: 0.04em;
 }
-.nav__links { display: flex; gap: clamp(22px, 2.6vw, 38px); }
+.nav__links { display: flex; gap: clamp(22px, 2.6vw, 38px); margin-left: auto; }
 .nav__links a {
   font-size: var(--label);
   font-weight: 500;
@@ -287,6 +296,38 @@ body.has-cursor,
 .nav__links a:hover::after,
 .nav__links a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
+.lang { display: flex; align-items: center; gap: 2px; margin-left: clamp(24px, 3vw, 44px); }
+.lang a {
+  position: relative;
+  padding: 6px 7px;
+  font-size: var(--label);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  opacity: 0.5;
+  transition: opacity 0.4s var(--ease);
+}
+.lang a + a::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  width: 1px;
+  height: 10px;
+  margin-top: -5px;
+  background: currentColor;
+  opacity: 0.35;
+}
+.lang a:hover,
+.lang a.is-active { opacity: 1; }
+.lang a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  bottom: 2px;
+  height: 1px;
+  background: currentColor;
+}
 .nav__toggle {
   display: none;
   width: 44px;
@@ -456,7 +497,7 @@ body.has-cursor,
   pointer-events: none;
 }
 /* Hero sabitken kameranın geri çekildiği kısa kaydırma aralığı */
-.hero-spacer { height: 70vh; height: 70svh; }
+.hero-spacer { height: 90vh; height: 90svh; }
 
 /* ==========================================================
    II. MANİFESTO
@@ -1238,6 +1279,8 @@ body.has-cursor,
   .nav { padding: 18px var(--gutter); padding-top: max(18px, env(safe-area-inset-top)); }
   .nav__links { display: none; }
   .nav__toggle { display: block; }
+  .lang { margin-left: auto; margin-right: 10px; }
+  .lang a { padding: 6px 5px; letter-spacing: 0.1em; }
   .motion .chapter-index { display: none; }
 
   .hero__name { top: 13svh; }
