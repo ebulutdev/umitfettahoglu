@@ -699,23 +699,56 @@ body.has-cursor,
 
 .projects__more {
   flex-shrink: 0;
-  width: min(22vw, 44vh);
-  aspect-ratio: 1;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  align-self: stretch;
+  width: min(28vw, 420px);
+  margin: 18vh 0;
+  padding: 0 0 0 48px;
+  border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: var(--serif);
-  font-size: 32px;
-  transition: background-color 0.7s var(--ease), color 0.7s var(--ease);
+  justify-content: space-between;
+  gap: 40px;
 }
-.projects__more em { font-family: var(--sans); font-style: normal; font-size: var(--label); letter-spacing: 0.26em; text-transform: uppercase; color: var(--brass); }
-.projects__more:hover,
-.projects__more:focus-visible { background: var(--ivory); color: var(--ink); }
-.projects__more:hover em { color: var(--brass-soft); }
+.projects__more-label { font-size: var(--label); font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--stone); }
+.projects__more-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(40px, 3.6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  transition: color 0.6s var(--ease);
+}
+.projects__more-title em { color: var(--brass); }
+.projects__more-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-size: var(--label);
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+/* İnce ok: çizgi + uç; üzerine gelince uzar */
+.arrow { position: relative; display: block; width: 44px; height: 1px; background: currentColor; transition: width 0.6s var(--ease); }
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -4px;
+  width: 9px;
+  height: 9px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+  transform-origin: 100% 0;
+}
+.projects__more:hover .arrow,
+.projects__more:focus-visible .arrow { width: 72px; }
+.projects__more:hover .projects__more-title { color: var(--brass); }
 
 /* ==========================================================
    VI. SAHNE
@@ -811,12 +844,12 @@ body.has-cursor,
 /* Logolar optik olarak eşitlenir: kare logolar yükseklikten, yatay logo genişlikten ölçeklenir */
 .brands {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
   gap: 40px;
   margin-top: 100px;
 }
-.brands li { display: flex; align-items: center; justify-content: center; height: 88px; }
+.brands li { display: flex; align-items: center; justify-content: center; height: 88px; min-width: 0; }
 .brands img {
   height: 100%;
   width: auto;
@@ -989,17 +1022,25 @@ body.has-cursor,
   .pcard--tall { width: 100%; }
   .pcard--tall .pcard__media { aspect-ratio: 16 / 11; }
   .pcard__media img { left: 0; width: 100%; }
-  .projects__more { width: 200px; align-self: center; font-size: 26px; }
+  .projects__more {
+    width: 100%;
+    margin: 8px 0 0;
+    padding: 40px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    gap: 28px;
+  }
+  .projects__more-title { font-size: clamp(40px, 11vw, 56px); }
 
   .group { padding: 120px var(--gutter) 100px; }
   .group__head { grid-template-columns: 1fr; gap: 28px; }
   .sectors { margin-top: 64px; }
   .sectors li { gap: 18px; padding: 22px 0; }
-  .brands { grid-template-columns: 1fr 1fr; gap: 28px 24px; margin-top: 70px; }
+  .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; margin-top: 70px; }
   .brands li { height: 64px; }
-  .brands .brands__wide img { width: min(100%, 170px); }
+  .brands .brands__wide img { width: min(88%, 160px); }
 
-  .values { padding: 100px var(--gutter); }
+  .values { min-height: 0; padding: 40px var(--gutter) 110px; }
   .values__list li:nth-child(2) { padding-left: 8vw; }
   .values__list li:nth-child(3) { padding-left: 16vw; }
 
