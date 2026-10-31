@@ -156,7 +156,6 @@
       "<span>Lassen Sie uns</span><span><em>gemeinsam bauen.</em></span>"],
     ["Ofis", "Office", "Bureau", "Büro"],
     ["Kişisel İletişim", "Personal Contact", "Contact personnel", "Persönlicher Kontakt"],
-    ["Doğrulanmış hesap", "Verified account", "Compte vérifié", "Verifiziertes Konto"],
 
     // İletişim formu
     ["Mesaj Gönderin", "Send a Message", "Envoyer un message", "Nachricht senden"],
