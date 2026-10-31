@@ -1426,7 +1426,7 @@ body.has-cursor,
 }
 .cform label small { font-size: 10px; letter-spacing: 0.12em; text-transform: none; opacity: 0.85; }
 .cform input:not([type="checkbox"]),
-.cform select,
+.cform__select-btn,
 .cform textarea {
   width: 100%;
   padding: 10px 0 12px;
@@ -1441,19 +1441,79 @@ body.has-cursor,
           appearance: none;
 }
 .cform textarea { min-height: 120px; resize: vertical; }
-.cform select {
+/* Konu: tarayıcının açılır listesi yerine sitenin diliyle açılan liste */
+.cform__select-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
   cursor: pointer;
-  padding-right: 24px;
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(-45deg, transparent 50%, currentColor 50%);
-  background-position: calc(100% - 9px) 52%, calc(100% - 4px) 52%;
-  background-size: 5px 5px;
-  background-repeat: no-repeat;
 }
+.cform__select-btn::after {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin: -4px 4px 0 0;
+  border-right: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  transform: rotate(45deg);
+  transition: transform 0.5s var(--ease), margin 0.5s var(--ease);
+}
+.cform__select.is-open .cform__select-btn { border-bottom-color: var(--accent); }
+.cform__select.is-open .cform__select-btn::after { margin-top: 4px; transform: rotate(-135deg); }
+.cform__options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  margin-top: 6px;
+  padding: 6px 0;
+  background: var(--bg) url("../assets/img/paper-texture.webp") center / 600px auto;
+  background-blend-mode: multiply;
+  border: 1px solid var(--rule);
+  box-shadow: 0 28px 50px -28px rgba(23, 22, 20, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.35s var(--ease), transform 0.5s var(--ease), visibility 0s linear 0.5s;
+}
+.cform__select.is-open .cform__options { opacity: 1; visibility: visible; transform: none; transition: opacity 0.35s var(--ease), transform 0.5s var(--ease); }
+.cform__options:focus { outline: none; }
+.cform__options li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--fg-dim);
+  cursor: pointer;
+  transition: color 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+.cform__options li + li { border-top: 1px solid var(--rule); }
+.cform__options li::before {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.cform__options li:hover,
+.cform__options li.is-active { color: var(--fg); background: rgba(152, 122, 85, 0.08); }
+.cform__options li[aria-selected="true"] { color: var(--fg); font-style: italic; }
+.cform__options li[aria-selected="true"]::before { transform: none; }
 .cform input:focus,
-.cform select:focus,
+.cform__select-btn:focus,
 .cform textarea:focus { outline: none; border-bottom-color: var(--accent); }
 .cform input:focus-visible,
-.cform select:focus-visible,
+.cform__select-btn:focus-visible,
 .cform textarea:focus-visible { box-shadow: 0 1px 0 var(--accent); }
 .cform__field.is-invalid input,
 .cform__field.is-invalid textarea { border-bottom-color: #9b3b2e; }

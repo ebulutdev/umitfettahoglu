@@ -157,6 +157,77 @@
      Bu yüzden mesaj her alıcının anahtarına ayrı ayrı gönderilir; hepsi onaylamadan
      "gönderildi" denmez. Herhangi bir hata olursa iki adresi içeren, hazır doldurulmuş
      bir e-posta bağlantısı sunulur: mesaj sessizce kaybolmaz. */
+  /* ---------- Konu listesi ----------
+     Tarayıcının kendi açılır listesi siteye uymadığı için: düğmeye basınca liste açılır,
+     seçilen değer gizli alana yazılır. Klavyeyle de kullanılır (oklar, Enter, Esc). */
+  const select = $(".cform__select");
+  if (select) {
+    const btn = $(".cform__select-btn", select);
+    const list = $(".cform__options", select);
+    const out = $(".cform__select-value", select);
+    const field = $('input[type="hidden"]', select);
+    const opts = $$('[role="option"]', list);
+    let active = 0;
+
+    const selected = () => Math.max(0, opts.findIndex((o) => o.getAttribute("aria-selected") === "true"));
+    const setActive = (i) => {
+      active = (i + opts.length) % opts.length;
+      opts.forEach((o, j) => o.classList.toggle("is-active", j === active));
+      list.setAttribute("aria-activedescendant", opts[active].id);
+    };
+    const open = () => {
+      select.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+      setActive(selected());
+      list.focus({ preventScroll: true });
+    };
+    const close = (refocus) => {
+      if (!select.classList.contains("is-open")) return;
+      select.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+      if (refocus) btn.focus({ preventScroll: true });
+    };
+    const choose = (i) => {
+      opts.forEach((o, j) => o.setAttribute("aria-selected", j === i ? "true" : "false"));
+      field.value = opts[i].dataset.value;
+      out.textContent = opts[i].textContent;
+      close(true);
+    };
+
+    btn.addEventListener("click", () => (select.classList.contains("is-open") ? close(true) : open()));
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        open();
+      }
+    });
+    opts.forEach((o, i) => {
+      o.addEventListener("click", () => choose(i));
+      o.addEventListener("pointermove", () => setActive(i));
+    });
+    list.addEventListener("keydown", (e) => {
+      const keys = {
+        ArrowDown: () => setActive(active + 1),
+        ArrowUp: () => setActive(active - 1),
+        Home: () => setActive(0),
+        End: () => setActive(opts.length - 1),
+        Enter: () => choose(active),
+        " ": () => choose(active),
+        Escape: () => close(true),
+      };
+      if (keys[e.key]) {
+        e.preventDefault();
+        keys[e.key]();
+      } else if (e.key === "Tab") close(false);
+    });
+    list.addEventListener("focusout", (e) => {
+      if (!select.contains(e.relatedTarget)) close(false);
+    });
+    document.addEventListener("pointerdown", (e) => {
+      if (!select.contains(e.target)) close(false);
+    });
+  }
+
   const cform = $(".cform");
   if (cform) {
     // Her alıcı için bir anahtar. Listedeki anahtarların hepsi geçerli değilse form çevrimiçi

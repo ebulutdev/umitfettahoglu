@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block&text=%C3%9Cmit%20Fettaho%C4%9Flu" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=50">
+  <link rel="stylesheet" href="css/style.css?v=52">
 </head>
 <body class="is-loading">
 
@@ -399,15 +399,17 @@
             <input id="cf-phone" name="phone" type="tel" autocomplete="tel" maxlength="40">
             <span class="cform__error" aria-live="polite"></span>
           </div>
-          <div class="cform__field">
-            <label for="cf-topic">Konu</label>
-            <select id="cf-topic" name="topic">
-              <option value="Genel">Genel</option>
-              <option value="İş birliği">İş birliği</option>
-              <option value="Proje">Proje</option>
-              <option value="Basın">Basın</option>
-              <option value="Diğer">Diğer</option>
-            </select>
+          <div class="cform__field cform__select">
+            <label for="cf-topic" id="cf-topic-label">Konu</label>
+            <input type="hidden" name="topic" value="Genel">
+            <button class="cform__select-btn" id="cf-topic" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="cf-topic-list" aria-labelledby="cf-topic-label cf-topic"><span class="cform__select-value">Genel</span></button>
+            <ul class="cform__options" id="cf-topic-list" role="listbox" tabindex="-1" aria-labelledby="cf-topic-label">
+              <li id="cf-topic-0" role="option" data-value="Genel" aria-selected="true">Genel</li>
+              <li id="cf-topic-1" role="option" data-value="İş birliği" aria-selected="false">İş birliği</li>
+              <li id="cf-topic-2" role="option" data-value="Proje" aria-selected="false">Proje</li>
+              <li id="cf-topic-3" role="option" data-value="Basın" aria-selected="false">Basın</li>
+              <li id="cf-topic-4" role="option" data-value="Diğer" aria-selected="false">Diğer</li>
+            </ul>
           </div>
         </div>
         <div class="cform__field">
@@ -474,6 +476,6 @@
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/i18n.js?v=12" defer></script>
-  <script src="js/main.js?v=50" defer></script>
+  <script src="js/main.js?v=51" defer></script>
 </body>
 </html>
