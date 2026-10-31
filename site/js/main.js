@@ -618,7 +618,9 @@
     .from(".quote__role", { autoAlpha: 0, duration: 0.8 }, "-=0.6");
 
   /* ---------- VIII. İlkeler: iletişim paneli üstünden geçer ---------- */
-  stack(".values", ".values__inner", ".contact");
+  // Telefonda bu bölüm içeriği kadar kısa: üstüne binme geçişi okunmadan örterdi,
+  // bu yüzden yalnızca tam ekran olduğu masaüstünde kullanılır.
+  mm.add("(min-width: 901px)", () => stack(".values", ".values__inner", ".contact"));
 
   /* ---------- IX. İletişim ---------- */
   gsap.from(".contact__grid > div", {

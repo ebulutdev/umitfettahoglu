@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block&text=%C3%9Cmit%20Fettaho%C4%9Flu" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=47">
+  <link rel="stylesheet" href="css/style.css?v=50">
 </head>
 <body class="is-loading">
 
@@ -62,11 +62,19 @@
   </header>
 
   <nav class="menu" id="menu" aria-label="Mobil menü" aria-hidden="true" inert>
-    <a href="#biyografi" data-scroll>Biyografi</a>
-    <a href="#rakamlar" data-scroll>Rakamlar</a>
-    <a href="#projeler" data-scroll>Projeler</a>
-    <a href="#grup" data-scroll>Grup</a>
-    <a href="#iletisim" data-scroll>İletişim</a>
+    <ol class="menu__links">
+      <li><a href="#biyografi" data-scroll><span class="menu__no">01</span><span class="menu__label">Biyografi</span></a></li>
+      <li><a href="#rakamlar" data-scroll><span class="menu__no">02</span><span class="menu__label">Rakamlar</span></a></li>
+      <li><a href="#projeler" data-scroll><span class="menu__no">03</span><span class="menu__label">Projeler</span></a></li>
+      <li><a href="#grup" data-scroll><span class="menu__no">04</span><span class="menu__label">Grup</span></a></li>
+      <li><a href="#iletisim" data-scroll><span class="menu__no">05</span><span class="menu__label">İletişim</span></a></li>
+    </ol>
+    <div class="menu__foot">
+      <div class="lang menu__lang" role="group" aria-label="Dil seçimi">
+        <a href="?lang=tr" data-lang="tr" hreflang="tr">TR</a><a href="?lang=en" data-lang="en" hreflang="en">EN</a><a href="?lang=fr" data-lang="fr" hreflang="fr">FR</a><a href="?lang=de" data-lang="de" hreflang="de">DE</a>
+      </div>
+      <a class="menu__mail" href="mailto:umitfettahoglu@fetsangrup.com">umitfettahoglu@fetsangrup.com</a>
+    </div>
   </nav>
 
   <main>
@@ -466,6 +474,6 @@
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/i18n.js?v=12" defer></script>
-  <script src="js/main.js?v=47" defer></script>
+  <script src="js/main.js?v=50" defer></script>
 </body>
 </html>
