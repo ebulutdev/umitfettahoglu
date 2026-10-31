@@ -136,6 +136,13 @@
       "Dans le cadre de sa structure multisectorielle, FETSAN Grup détient des investissements dans la restauration.",
       "Als Teil der branchenübergreifenden Struktur hält FETSAN Grup Beteiligungen in der Gastronomie."],
 
+    // Söz
+    ["Söz", "In His Words", "Ses mots", "In seinen Worten"],
+    ["İşimizin temelinde emek, sözümüzün arkasında sorumluluk var. Bize duyulan güveni korumak ve kalıcı değerler üretmek için aynı kararlılıkla çalışmaya devam ediyoruz.",
+      "Our work is built on dedication; behind our word stands responsibility. We continue to work with the same determination to protect the trust placed in us and to create lasting value.",
+      "Notre travail repose sur l’engagement, et derrière notre parole se tient la responsabilité. Nous continuons d’avancer avec la même détermination pour préserver la confiance qui nous est accordée et créer une valeur durable.",
+      "Unsere Arbeit gründet auf Hingabe, hinter unserem Wort steht Verantwortung. Mit derselben Entschlossenheit arbeiten wir weiter, um das uns entgegengebrachte Vertrauen zu bewahren und bleibende Werte zu schaffen."],
+
     // İlkeler
     ["Yönetim Anlayışı", "Leadership Principles", "Principes de direction", "Führungsprinzipien"],
     ["<em>Kalite</em> standartları", "<em>Quality</em> standards", "Normes de <em>qualité</em>", "<em>Qualitäts</em>standards"],
@@ -166,6 +173,8 @@
     ["Projeler", "Projects", "Projets", "Projekte"],
     ["Sahada", "On Site", "Sur le terrain", "Vor Ort"],
     ["Miras", "Legacy", "Héritage", "Erbe"],
+    ["Söz", "In His Words", "Ses mots", "In seinen Worten"],
+    ["Ümit Fettahoğlu sahnede, Türk bayrağının yanında", "Ümit Fettahoğlu on stage beside the Turkish flag", "Ümit Fettahoğlu sur scène, près du drapeau turc", "Ümit Fettahoğlu auf der Bühne neben der türkischen Flagge"],
     ["Grup", "Group", "Groupe", "Gruppe"],
     ["İlkeler", "Principles", "Principes", "Prinzipien"],
     ["İletişim", "Contact", "Contact", "Kontakt"],

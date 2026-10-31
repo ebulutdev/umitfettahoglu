@@ -161,7 +161,7 @@ button { font: inherit; color: inherit; }
   opacity: 0;
   transition: opacity 0.6s var(--ease);
 }
-.motion .chapter-index { display: flex; }
+.motion .chapter-index { display: none; }
 .chapter-index.is-visible { opacity: 1; }
 .chapter-index.is-visible.is-muted { opacity: 0; }
 .chapter-index > span { display: block; overflow: hidden; }
@@ -524,8 +524,8 @@ body.has-cursor,
   margin-top: 34px;
   max-width: 14ch;
 }
-.manifesto__quote .w { display: inline-block; }
-.motion .manifesto__quote .w { opacity: 0.12; }
+.manifesto__quote .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.14em; margin-bottom: -0.14em; }
+.manifesto__quote .w__i { display: inline-block; transform-origin: 0 100%; }
 .manifesto__quote .w:nth-child(n+3) { font-style: italic; }
 .manifesto__sign {
   margin-top: 42px;
@@ -1157,6 +1157,75 @@ body.has-cursor,
 }
 .brands .brands__wide img { height: auto; width: min(100%, 230px); }
 .brands li:hover img { opacity: 1; }
+
+/* ==========================================================
+   VIII. SÖZ — fotoğraf solda eriyen arka plan, sağda söz ve imza
+   ========================================================== */
+.quote {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background: var(--ink);
+  overflow: hidden;
+}
+.quote__media { position: absolute; inset: 0 50% 0 0; }
+.quote__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 35% 30%;
+  -webkit-mask-image: linear-gradient(90deg, #000 45%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+          mask-image: linear-gradient(90deg, #000 45%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+  will-change: transform;
+}
+.quote__body { grid-column: 2; position: relative; padding: 140px var(--gutter) 140px 2vw; max-width: 760px; }
+.quote__text {
+  margin-top: 30px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(30px, 3vw, 50px);
+  line-height: 1.22;
+  letter-spacing: -0.005em;
+}
+.quote__text::before { content: "“"; display: block; height: 0.5em; font-size: 2.4em; line-height: 1; color: var(--brass); font-style: normal; }
+.quote__body figcaption { margin-top: 44px; display: flex; flex-direction: column; gap: 6px; }
+.quote__sign { font-size: clamp(46px, 4.4vw, 72px); }
+.quote__role { font-size: var(--label); font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--stone); }
+
+/* Ortak imza: kalemle yazılıyormuş gibi açılan maske */
+.sign {
+  --pen: 0%;
+  display: inline-block;
+  font-family: "Great Vibes", "Brush Script MT", cursive;
+  line-height: 1.25;
+  padding-right: 0.15em;
+  color: var(--brass);
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+          mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+  -webkit-mask-size: 260% 100%;
+          mask-size: 260% 100%;
+  -webkit-mask-position: var(--pen) 0;
+          mask-position: var(--pen) 0;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+@media (max-width: 900px) {
+  .quote { grid-template-columns: 1fr; min-height: 0; }
+  .quote__media { position: relative; inset: auto; height: 62svh; }
+  .quote__media img {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 65%, transparent 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 65%, transparent 100%);
+  }
+  .quote__body { grid-column: 1; padding: 0 var(--gutter) 110px; margin-top: -60px; }
+  .quote__text { font-size: clamp(26px, 7vw, 34px); }
+}
 
 /* ==========================================================
    VIII. İLKELER

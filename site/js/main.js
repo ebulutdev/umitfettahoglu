@@ -104,7 +104,7 @@
     line.innerHTML = `<span class="line-inner">${line.innerHTML}</span>`;
   });
   $$("[data-words]").forEach((el) => {
-    el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(" ");
+    el.innerHTML = el.textContent.trim().split(/\s+/).map((w) => `<span class="w"><span class="w__i">${w}</span></span>`).join(" ");
   });
 
   /* ---------- sektörler: tıklanınca kısa açıklama açılır (aynı anda tek satır) ---------- */
@@ -242,12 +242,10 @@
   };
 
   /* ---------- II. Manifesto: ekrana girerken kelime kelime aydınlanır ---------- */
-  gsap.to(".manifesto__quote .w", {
-    opacity: 1,
-    stagger: 0.12,
-    ease: "none",
-    scrollTrigger: { trigger: ".manifesto", start: "top 80%", end: "top 5%", scrub: 1 },
-  });
+  // Kelimeler kaydırdıkça maskenin altından tek tek yükselir
+  gsap.timeline({ scrollTrigger: { trigger: ".manifesto", start: "top 85%", end: "top 10%", scrub: 1 } })
+    .from(".manifesto .eyebrow", { autoAlpha: 0, x: -24, ease: "none", duration: 0.4 }, 0)
+    .from(".manifesto__quote .w__i", { yPercent: 115, rotate: 4, autoAlpha: 0, ease: "power2.out", stagger: 0.18, duration: 0.7 }, 0.1);
   gsap.from(".manifesto__sign", {
     autoAlpha: 0,
     x: -30,
@@ -493,6 +491,19 @@
     scrollTrigger: { trigger: ".group__lead", start: "top 88%" },
   });
 
+  /* ---------- Söz: fotoğraf yavaşça yaklaşır, söz belirir, imza yazılır ---------- */
+  gsap.fromTo(".quote__media img", { scale: 1.12, yPercent: -4 }, {
+    scale: 1,
+    yPercent: 4,
+    ease: "none",
+    scrollTrigger: { trigger: ".quote", start: "top bottom", end: "bottom top", scrub: true },
+  });
+  gsap.timeline({ scrollTrigger: { trigger: ".quote__body", start: "top 70%" } })
+    .from(".quote__body .eyebrow", { autoAlpha: 0, x: -20, duration: 0.9, ease: "expo.out" })
+    .from(".quote__text", { autoAlpha: 0, y: 40, duration: 1.4, ease: "expo.out" }, "-=0.6")
+    .fromTo(".quote__sign", { "--pen": "100%" }, { "--pen": "0%", duration: 2, ease: "power1.inOut" }, "-=0.5")
+    .from(".quote__role", { autoAlpha: 0, duration: 0.8 }, "-=0.6");
+
   /* ---------- VIII. İlkeler: iletişim paneli üstünden geçer ---------- */
   stack(".values", ".values__inner", ".contact");
 
@@ -517,42 +528,6 @@
       ease: "expo.out",
       scrollTrigger: { trigger: title, start: "top 85%" },
     });
-  });
-
-  /* ---------- Editoryal künye: hangi bölümde olduğunu gösterir ---------- */
-  const index = $(".chapter-index");
-  const idxText = [$(".chapter-index__no b"), $(".chapter-index__label b")];
-  let currentChapter = null;
-  const setChapter = (sec) => {
-    const no = sec ? sec.dataset.chapter : null;
-    if (no === currentChapter) return;
-    currentChapter = no;
-    index.classList.toggle("is-visible", !!sec);
-    if (!sec) return;
-    gsap.killTweensOf(idxText);
-    gsap.timeline()
-      .to(idxText, { yPercent: -110, duration: 0.25, ease: "power2.in" })
-      .add(() => {
-        idxText[0].textContent = no;
-        idxText[1].textContent = sec.dataset.chapterLabel;
-      })
-      .fromTo(idxText, { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.05, ease: "expo.out" });
-  };
-  $$("[data-chapter]").forEach((sec, i) => {
-    ScrollTrigger.create({
-      trigger: sec,
-      start: "top 50%",
-      end: "bottom 50%",
-      onEnter: () => setChapter(sec),
-      onEnterBack: () => setChapter(sec),
-      onLeaveBack: i === 0 ? () => setChapter(null) : undefined,
-    });
-  });
-  // Sayfa sonunda künye, alt bilgi satırıyla çakışmasın
-  ScrollTrigger.create({
-    trigger: ".contact__bottom",
-    start: "top bottom",
-    onToggle: (self) => index.classList.toggle("is-muted", self.isActive),
   });
 
   /* ---------- Sayfa ilerleme çizgisi ---------- */
