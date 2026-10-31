@@ -152,6 +152,114 @@
     lastTrigger?.focus();
   });
 
+  /* ---------- İletişim formu ----------
+     Web3Forms ücretsiz planında her erişim anahtarı tek alıcıya bağlıdır (CC ücretli).
+     Bu yüzden mesaj her alıcının anahtarına ayrı ayrı gönderilir; hepsi onaylamadan
+     "gönderildi" denmez. Herhangi bir hata olursa iki adresi içeren, hazır doldurulmuş
+     bir e-posta bağlantısı sunulur: mesaj sessizce kaybolmaz. */
+  const cform = $(".cform");
+  if (cform) {
+    // Her alıcı için bir anahtar. Listedeki anahtarların hepsi geçerli değilse form çevrimiçi
+    // göndermez: tek anahtarla mesajın yalnızca bir adrese gidip "gönderildi" görünmesi engellenir.
+    const keyList = (cform.dataset.keys || "").split(",").map((k) => k.trim()).filter(Boolean);
+    // data-live="true" yalnızca her formun alıcısı Web3Forms panelinde doğru adrese ayarlanınca açılır.
+    const live = cform.dataset.live === "true";
+    const keys = live && keyList.every((k) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(k)) ? keyList : [];
+    const recipients = cform.dataset.recipients || "";
+    const status = $(".cform__status", cform);
+    const submit = $(".cform__submit", cform);
+    const label = $(".cform__label", submit);
+    const idleLabel = label.textContent;
+    const required = {
+      name: t("Lütfen adınızı yazın."),
+      email: t("Lütfen geçerli bir e-posta adresi yazın."),
+      message: t("Lütfen mesajınızı yazın."),
+      consent: t("Devam etmek için onay kutusunu işaretleyin."),
+    };
+
+    const setError = (input, msg) => {
+      const field = input.closest(".cform__field");
+      field.classList.toggle("is-invalid", !!msg);
+      $(".cform__error", field).textContent = msg || "";
+      input.setAttribute("aria-invalid", msg ? "true" : "false");
+    };
+    const validate = () => {
+      let first = null;
+      Object.entries(required).forEach(([name, msg]) => {
+        const el = cform.elements[name];
+        const ok = el.type === "checkbox" ? el.checked : el.value.trim() !== "" && el.checkValidity();
+        setError(el, ok ? "" : msg);
+        if (!ok && !first) first = el;
+      });
+      return first;
+    };
+    Object.keys(required).forEach((name) => {
+      const el = cform.elements[name];
+      el.addEventListener(el.type === "checkbox" ? "change" : "input", () => {
+        if (el.closest(".cform__field").classList.contains("is-invalid")) validate();
+      });
+    });
+
+    const subjectOf = (d) => `Web sitesi iletişim formu — ${d.topic} — ${d.name}`;
+    const mailtoOf = (d) => {
+      const body = `${d.message}\n\n— ${d.name}\n${d.email}${d.phone ? "\n" + d.phone : ""}`;
+      return `mailto:${recipients}?subject=${encodeURIComponent(subjectOf(d))}&body=${encodeURIComponent(body)}`;
+    };
+    const showFallback = (d) => {
+      status.classList.add("is-error");
+      status.innerHTML = `${t("Mesaj şu anda gönderilemedi. Lütfen e-posta ile ulaşın:")} <a href="${mailtoOf(d)}">${t("E-posta ile gönder")}</a>`;
+    };
+    const sendTo = (key, d) =>
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: key,
+          subject: subjectOf(d),
+          from_name: "umitfettahoglu.com",
+          replyto: d.email,
+          name: d.name,
+          email: d.email,
+          phone: d.phone || "-",
+          topic: d.topic,
+          message: d.message,
+          botcheck: false,
+        }),
+      })
+        .then((r) => r.json())
+        .then((res) => res.success === true)
+        .catch(() => false);
+
+    cform.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "";
+      status.classList.remove("is-error");
+      const firstInvalid = validate();
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+      if (cform.elements.botcheck.checked) return; // bot doldurdu
+      const d = Object.fromEntries(["name", "email", "phone", "topic", "message"].map((n) => [n, cform.elements[n].value.trim()]));
+      if (!keys.length) {
+        showFallback(d); // erişim anahtarları henüz girilmemiş
+        return;
+      }
+      submit.disabled = true;
+      label.textContent = t("Gönderiliyor…");
+      const results = await Promise.all(keys.map((key) => sendTo(key, d)));
+      if (results.every(Boolean)) {
+        cform.innerHTML = `<div class="cform__done" tabindex="-1"><h3>${t("Teşekkürler, <em>mesajınız ulaştı.</em>")}</h3><p>${t("En kısa sürede size dönüş yapılacaktır.")}</p></div>`;
+        $(".cform__done", cform).focus();
+        window.ScrollTrigger?.refresh();
+      } else {
+        submit.disabled = false;
+        label.textContent = idleLabel;
+        showFallback(d);
+      }
+    });
+  }
+
   if (!motion) {
     dropLoader();
     return;
@@ -532,17 +640,6 @@
 
   /* ---------- Sayfa ilerleme çizgisi ---------- */
   gsap.to(".progress i", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: 0.3 } });
-
-  /* ---------- Menü: aşağı kaydırırken çekilir, yukarı kaydırırken döner ---------- */
-  const nav = $(".nav");
-  ScrollTrigger.create({
-    start: 0,
-    end: "max",
-    onUpdate: (self) => {
-      const hide = self.direction === 1 && self.scroll() > 240;
-      if (hide !== nav.classList.contains("is-hidden")) nav.classList.toggle("is-hidden", hide);
-    },
-  });
 
   // Web fontları yüklenince satır yükseklikleri değişir: tetik noktalarını yeniden hesapla
   document.fonts?.ready.then(() => ScrollTrigger.refresh());

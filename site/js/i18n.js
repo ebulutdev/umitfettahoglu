@@ -155,6 +155,31 @@
       "<span>Bâtissons</span><span><em>ensemble.</em></span>",
       "<span>Lassen Sie uns</span><span><em>gemeinsam bauen.</em></span>"],
     ["Ofis", "Office", "Bureau", "Büro"],
+
+    // İletişim formu
+    ["Mesaj Gönderin", "Send a Message", "Envoyer un message", "Nachricht senden"],
+    ["Ad Soyad", "Full Name", "Nom complet", "Vor- und Nachname"],
+    ["E-posta", "Email", "E-mail", "E-Mail"],
+    ["Telefon <small>(isteğe bağlı)</small>", "Phone <small>(optional)</small>", "Téléphone <small>(facultatif)</small>", "Telefon <small>(optional)</small>"],
+    ["Konu", "Subject", "Objet", "Betreff"],
+    ["Genel", "General", "Général", "Allgemein"],
+    ["İş birliği", "Partnership", "Partenariat", "Kooperation"],
+    ["Proje", "Project", "Projet", "Projekt"],
+    ["Basın", "Press", "Presse", "Presse"],
+    ["Diğer", "Other", "Autre", "Sonstiges"],
+    ["Mesajınız", "Your Message", "Votre message", "Ihre Nachricht"],
+    ["Kişisel verilerimin, talebime yanıt verilmesi amacıyla işlenmesini kabul ediyorum.", "I consent to the processing of my personal data for the purpose of responding to my request.", "J’accepte le traitement de mes données personnelles afin qu’il soit répondu à ma demande.", "Ich willige in die Verarbeitung meiner personenbezogenen Daten zur Beantwortung meiner Anfrage ein."],
+    ["KVKK Aydınlatma Metni", "Privacy Notice (KVKK)", "Avis de confidentialité (KVKK)", "Datenschutzhinweis (KVKK)"],
+    ["Mesajı Gönder", "Send Message", "Envoyer", "Nachricht senden"],
+    ["Lütfen adınızı yazın.", "Please enter your name.", "Veuillez indiquer votre nom.", "Bitte geben Sie Ihren Namen ein."],
+    ["Lütfen geçerli bir e-posta adresi yazın.", "Please enter a valid email address.", "Veuillez indiquer une adresse e-mail valide.", "Bitte geben Sie eine gültige E-Mail-Adresse ein."],
+    ["Lütfen mesajınızı yazın.", "Please enter your message.", "Veuillez écrire votre message.", "Bitte geben Sie Ihre Nachricht ein."],
+    ["Devam etmek için onay kutusunu işaretleyin.", "Please tick the consent box to continue.", "Veuillez cocher la case de consentement pour continuer.", "Bitte bestätigen Sie die Einwilligung, um fortzufahren."],
+    ["Gönderiliyor…", "Sending…", "Envoi…", "Wird gesendet…"],
+    ["Teşekkürler, <em>mesajınız ulaştı.</em>", "Thank you, <em>your message has arrived.</em>", "Merci, <em>votre message nous est parvenu.</em>", "Vielen Dank, <em>Ihre Nachricht ist angekommen.</em>"],
+    ["En kısa sürede size dönüş yapılacaktır.", "We will get back to you as soon as possible.", "Nous vous répondrons dans les meilleurs délais.", "Wir melden uns so bald wie möglich bei Ihnen."],
+    ["Mesaj şu anda gönderilemedi. Lütfen e-posta ile ulaşın:", "Your message could not be sent right now. Please reach us by email:", "Votre message n’a pas pu être envoyé. Veuillez nous écrire par e-mail :", "Ihre Nachricht konnte nicht gesendet werden. Bitte kontaktieren Sie uns per E-Mail:"],
+    ["E-posta ile gönder", "Send by email", "Envoyer par e-mail", "Per E-Mail senden"],
     ["Genel Merkez", "Headquarters", "Siège", "Hauptsitz"],
     ["Şube — Sefaköy", "Branch — Sefaköy", "Agence — Sefaköy", "Niederlassung — Sefaköy"],
     ["Şube — Zeytinburnu", "Branch — Zeytinburnu", "Agence — Zeytinburnu", "Niederlassung — Zeytinburnu"],
@@ -239,7 +264,7 @@
 
     document.body.querySelectorAll("*").forEach((el) => {
       if (!el.isConnected) return;
-      if (el.children.length === 0 || el.querySelector(":scope > em, :scope > span, :scope > br")) {
+      if (el.children.length === 0 || el.querySelector(":scope > em, :scope > span, :scope > br, :scope > small")) {
         const key = el.innerHTML.trim();
         const val = textMap.get(key);
         if (val) el.innerHTML = val;

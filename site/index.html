@@ -10,7 +10,10 @@
   <meta property="og:locale" content="tr_TR">
   <meta property="og:title" content="Ümit Fettahoğlu | Kurucu Ortak &amp; Yönetim Kurulu Başkanı">
   <meta property="og:description" content="FETSAN Grup Kurucu Ortağı ve Yönetim Kurulu Başkanı. İnşaat, kentsel dönüşüm ve çok sektörlü yatırımlar.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230d0c0b'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23b4935a' text-anchor='middle'%3E%C3%9CF%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="assets/icons/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png?v=2" sizes="32x32" type="image/png">
+  <link rel="alternate icon" href="favicon.ico?v=2">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=2">
 
   <link rel="preload" as="image" href="assets/img/figure-office.webp?v=3" type="image/webp">
 
@@ -18,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block&text=%C3%9Cmit%20Fettaho%C4%9Flu" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=27">
+  <link rel="stylesheet" href="css/style.css?v=39">
 </head>
 <body class="is-loading">
 
@@ -85,7 +88,7 @@
     <div class="hero-spacer" aria-hidden="true"></div>
 
     <!-- II. Manifesto -->
-    <section class="manifesto" aria-label="Yaklaşım" data-chapter="I" data-chapter-label="Yaklaşım">
+    <section class="manifesto theme-paper" aria-label="Yaklaşım" data-chapter="I" data-chapter-label="Yaklaşım">
       <div class="manifesto__inner">
         <p class="eyebrow eyebrow--dark">Yaklaşım</p>
         <blockquote class="manifesto__quote" data-words>Kenti dönüştürüyoruz, yaşamı güzelleştiriyoruz.</blockquote>
@@ -94,7 +97,7 @@
     </section>
 
     <!-- III. Biyografi -->
-    <section class="bio" id="biyografi" data-chapter="II" data-chapter-label="Biyografi">
+    <section class="bio theme-paper" id="biyografi" data-chapter="II" data-chapter-label="Biyografi">
       <div class="bio__inner">
         <div class="bio__text">
           <p class="eyebrow">Biyografi</p>
@@ -146,7 +149,7 @@
     </section>
 
     <!-- V. Projeler (yatay sahne) -->
-    <section class="projects" id="projeler" data-chapter="IV" data-chapter-label="Projeler">
+    <section class="projects theme-paper" id="projeler" data-chapter="IV" data-chapter-label="Projeler">
       <div class="projects__progress" aria-hidden="true"><span class="projects__count">01</span><i><b></b></i><span>07</span></div>
       <div class="projects__track">
         <div class="projects__intro">
@@ -263,7 +266,7 @@
     </section>
 
     <!-- VII. Grup -->
-    <section class="group" id="grup" data-chapter="VII" data-chapter-label="Grup">
+    <section class="group theme-paper" id="grup" data-chapter="VII" data-chapter-label="Grup">
       <div class="group__head">
         <p class="eyebrow">FETSAN Grup</p>
         <h2 class="section-title"><span>Tek vizyon,</span><span><em>çok sektörlü</em> bir yapı.</span></h2>
@@ -330,7 +333,7 @@
     </section>
 
     <!-- IX. İlkeler -->
-    <section class="values" aria-label="Yönetim anlayışı" data-chapter="IX" data-chapter-label="İlkeler">
+    <section class="values theme-paper" aria-label="Yönetim anlayışı" data-chapter="IX" data-chapter-label="İlkeler">
       <div class="values__inner">
         <p class="eyebrow">Yönetim Anlayışı</p>
         <ul class="values__list">
@@ -344,11 +347,67 @@
   </main>
 
   <!-- IX. İletişim -->
-  <footer class="contact" id="iletisim" data-chapter="X" data-chapter-label="İletişim">
+  <footer class="contact theme-paper" id="iletisim" data-chapter="X" data-chapter-label="İletişim">
+    <div class="contact__main">
     <div class="contact__top">
       <p class="eyebrow">İletişim</p>
       <h2 class="contact__title"><span>Birlikte</span><span><em>inşa edelim.</em></span></h2>
       <a class="contact__mail" href="mailto:umitfettahoglu@fetsangrup.com">umitfettahoglu@fetsangrup.com</a>
+    </div>
+      <form class="cform" id="iletisim-formu" novalidate
+            data-keys="ee8c747a-5b50-4e3b-96cb-5c3685dbf94b,11497c5c-7f5b-4660-855b-cadf44ca01e6"
+            data-live="false"
+            data-recipients="umitfettahoglu@fetsangrup.com,iletisim@fetsangrup.com">
+        <p class="eyebrow">Mesaj Gönderin</p>
+        <div class="cform__row">
+          <div class="cform__field">
+            <label for="cf-name">Ad Soyad</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="120">
+            <span class="cform__error" aria-live="polite"></span>
+          </div>
+          <div class="cform__field">
+            <label for="cf-email">E-posta</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="160">
+            <span class="cform__error" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="cform__row">
+          <div class="cform__field">
+            <label for="cf-phone">Telefon <small>(isteğe bağlı)</small></label>
+            <input id="cf-phone" name="phone" type="tel" autocomplete="tel" maxlength="40">
+            <span class="cform__error" aria-live="polite"></span>
+          </div>
+          <div class="cform__field">
+            <label for="cf-topic">Konu</label>
+            <select id="cf-topic" name="topic">
+              <option value="Genel">Genel</option>
+              <option value="İş birliği">İş birliği</option>
+              <option value="Proje">Proje</option>
+              <option value="Basın">Basın</option>
+              <option value="Diğer">Diğer</option>
+            </select>
+          </div>
+        </div>
+        <div class="cform__field">
+          <label for="cf-message">Mesajınız</label>
+          <textarea id="cf-message" name="message" rows="4" required maxlength="4000"></textarea>
+          <span class="cform__error" aria-live="polite"></span>
+        </div>
+        <!-- Spam koruması: insanlar görmez, botlar doldurur -->
+        <input class="cform__trap" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="cform__field cform__field--check">
+          <label class="cform__check">
+            <input id="cf-consent" name="consent" type="checkbox" required>
+            <span>Kişisel verilerimin, talebime yanıt verilmesi amacıyla işlenmesini kabul ediyorum.</span>
+          </label>
+          <a class="cform__kvkk" href="https://fetsangrup.com/kvkk-ve-gizlilik?tab=kvkk" target="_blank" rel="noopener noreferrer">KVKK Aydınlatma Metni</a>
+          <span class="cform__error" aria-live="polite"></span>
+        </div>
+        <div class="cform__actions">
+          <button class="cform__submit" type="submit"><span class="cform__label">Mesajı Gönder</span><i class="arrow" aria-hidden="true"></i></button>
+          <p class="cform__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
     <div class="contact__grid">
       <div>
@@ -391,7 +450,7 @@
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/vendor/lenis.min.js" defer></script>
-  <script src="js/i18n.js?v=2" defer></script>
-  <script src="js/main.js?v=27" defer></script>
+  <script src="js/i18n.js?v=7" defer></script>
+  <script src="js/main.js?v=39" defer></script>
 </body>
 </html>
