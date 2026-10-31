@@ -155,6 +155,8 @@
       "<span>Bâtissons</span><span><em>ensemble.</em></span>",
       "<span>Lassen Sie uns</span><span><em>gemeinsam bauen.</em></span>"],
     ["Ofis", "Office", "Bureau", "Büro"],
+    ["Kişisel İletişim", "Personal Contact", "Contact personnel", "Persönlicher Kontakt"],
+    ["Doğrulanmış hesap", "Verified account", "Compte vérifié", "Verifiziertes Konto"],
 
     // İletişim formu
     ["Mesaj Gönderin", "Send a Message", "Envoyer un message", "Nachricht senden"],
@@ -207,6 +209,7 @@
     ["1956'dan bu yana", "Since 1956", "Depuis 1956", "Seit 1956"],
     ["Grup markaları", "Group brands", "Marques du groupe", "Marken der Gruppe"],
     ["Sosyal medya", "Social media", "Réseaux sociaux", "Soziale Medien"],
+    ["FETSAN GRUP sosyal medya", "FETSAN GRUP social media", "Réseaux sociaux de FETSAN GRUP", "Soziale Medien von FETSAN GRUP"],
     ["FETSAN GRUP web sitesi", "FETSAN GRUP website", "Site web de FETSAN GRUP", "Website von FETSAN GRUP"],
     ["Videoyu kapat", "Close video", "Fermer la vidéo", "Video schließen"],
     ["Tanıtım filmini izle: Kentsel Dönüşümde Güvenin Adresi", "Watch the film: The address of trust in urban renewal", "Voir le film : La référence de confiance en transformation urbaine", "Film ansehen: Die Adresse des Vertrauens in der Stadterneuerung"],

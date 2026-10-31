@@ -1484,6 +1484,49 @@ body.has-cursor,
 .cform__done h3 em { color: var(--accent); }
 .cform__done p { margin-top: 14px; max-width: 44ch; color: var(--fg-dim); }
 
+/* Kişisel iletişim: yalnızca doğrulanmış kişisel kanallar */
+.personal { margin-top: 44px; max-width: 560px; border-top: 1px solid var(--rule); }
+.personal__label {
+  margin: 18px 0 4px;
+  font-size: var(--label);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.personal__row {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 4px 18px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.personal__key { font-size: var(--label); font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); }
+.personal__value {
+  font-family: var(--serif);
+  font-size: clamp(20px, 1.9vw, 28px);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  transition: color 0.4s var(--ease);
+}
+.personal__badge {
+  display: inline-block;
+  margin-left: 10px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  vertical-align: middle;
+}
+.personal__row .arrow { align-self: center; color: var(--accent); width: 28px; }
+.personal__row:hover .personal__value,
+.personal__row:focus-visible .personal__value { color: var(--accent); }
+.personal__row:hover .arrow { width: 44px; }
+.social__label { margin-right: 10px; padding: 6px 0; font-size: var(--label); font-weight: 600; letter-spacing: 0.22em; color: var(--muted); }
+
 /* ==========================================================
    TABLET / DAR MASAÜSTÜ
    ========================================================== */
@@ -1573,6 +1616,8 @@ body.has-cursor,
   .contact__grid { margin-top: 80px; gap: 32px 20px; }
   .contact__bottom { margin-top: 70px; flex-direction: column; align-items: flex-start; }
   .contact__main { grid-template-columns: 1fr; gap: 56px; }
+  .personal__row { grid-template-columns: 1fr auto; }
+  .personal__key { grid-column: 1 / -1; }
   .cform__row { grid-template-columns: 1fr; gap: 26px; }
   .cform__submit { width: 100%; justify-content: space-between; }
 }
