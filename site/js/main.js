@@ -293,6 +293,11 @@
   const startIntro = () => {
     if (introStarted) return;
     introStarted = true;
+    // Tarayıcı yine de bir konum geri yüklediyse: açılıştan hemen önce en üste dön ve
+    // sahnelerin konumlarını en üste göre yeniden hesapla (zıplama ve takılmayı önler)
+    window.scrollTo(0, 0);
+    lenis?.scrollTo(0, { immediate: true, force: true });
+    ScrollTrigger.refresh();
     intro.play();
   };
   if (document.readyState === "complete") startIntro();

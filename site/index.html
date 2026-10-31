@@ -2,14 +2,20 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8">
+  <script>
+    /* Sayfa yenilendiğinde tarayıcının kaldığı yeri geri yüklemesini en erken anda kapat:
+       açılış sahnesi her zaman en üstten başlar. pagehide, geri/ileri önbelleğini bozmaz. */
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    addEventListener("pagehide", function () { scrollTo(0, 0); });
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Ümit Fettahoğlu | Kurucu Ortak &amp; Yönetim Kurulu Başkanı</title>
-  <meta name="description" content="Ümit Fettahoğlu — FETSAN Grup Kurucu Ortağı ve Yönetim Kurulu Başkanı. İnşaat, kentsel dönüşüm ve çok sektörlü yatırımlar.">
+  <title>Ümit FETTAHOĞLU | Kurucu Ortak &amp; Yönetim Kurulu Başkanı</title>
+  <meta name="description" content="Ümit FETTAHOĞLU — FETSAN GRUP Kurucu Ortağı ve Yönetim Kurulu Başkanı. İnşaat, kentsel dönüşüm ve çok sektörlü yatırımlar.">
   <meta name="theme-color" content="#0d0c0b">
   <meta property="og:type" content="profile">
   <meta property="og:locale" content="tr_TR">
-  <meta property="og:title" content="Ümit Fettahoğlu | Kurucu Ortak &amp; Yönetim Kurulu Başkanı">
-  <meta property="og:description" content="FETSAN Grup Kurucu Ortağı ve Yönetim Kurulu Başkanı. İnşaat, kentsel dönüşüm ve çok sektörlü yatırımlar.">
+  <meta property="og:title" content="Ümit FETTAHOĞLU | Kurucu Ortak &amp; Yönetim Kurulu Başkanı">
+  <meta property="og:description" content="FETSAN GRUP Kurucu Ortağı ve Yönetim Kurulu Başkanı. İnşaat, kentsel dönüşüm ve çok sektörlü yatırımlar.">
   <link rel="icon" href="assets/icons/favicon.svg?v=2" type="image/svg+xml">
   <link rel="icon" href="assets/icons/favicon-32.png?v=2" sizes="32x32" type="image/png">
   <link rel="alternate icon" href="favicon.ico?v=2">
@@ -21,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block&text=%C3%9Cmit%20Fettaho%C4%9Flu" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=39">
+  <link rel="stylesheet" href="css/style.css?v=42">
 </head>
 <body class="is-loading">
 
@@ -36,12 +42,12 @@
     <div class="loader__inner">
       <span class="loader__sign">Ümit Fettahoğlu</span>
       <span class="loader__bar"><i></i></span>
-      <span class="loader__name">FETSAN Grup</span>
+      <span class="loader__name">FETSAN GRUP</span>
     </div>
   </div>
 
   <header class="nav">
-    <a href="#top" class="nav__brand" data-scroll>Ümit Fettahoğlu</a>
+    <a href="#top" class="nav__brand" data-scroll>Ümit FETTAHOĞLU</a>
     <nav class="nav__links" aria-label="Ana menü">
       <a href="#biyografi" data-scroll>Biyografi</a>
       <a href="#rakamlar" data-scroll>Rakamlar</a>
@@ -71,16 +77,16 @@
         <img src="assets/img/bg-hero.webp" srcset="assets/img/bg-hero-m.webp 1000w, assets/img/bg-hero.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
       </div>
       <div class="hero__veil"></div>
-      <h1 class="hero__name" aria-label="Ümit Fettahoğlu">
+      <h1 class="hero__name" aria-label="Ümit FETTAHOĞLU">
         <span class="hero__l1" aria-hidden="true">Ümit</span>
-        <span class="hero__l2" aria-hidden="true">Fettahoğlu</span>
+        <span class="hero__l2" aria-hidden="true">FETTAHOĞLU</span>
       </h1>
       <div class="hero__stage">
-        <img class="hero__figure" src="assets/img/figure-office.webp?v=3" width="830" height="598" alt="Ümit Fettahoğlu" fetchpriority="high">
+        <img class="hero__figure" src="assets/img/figure-office.webp?v=3" width="830" height="598" alt="Ümit FETTAHOĞLU" fetchpriority="high">
       </div>
       <div class="hero__meta">
         <p class="eyebrow">Kurucu Ortak &amp; Yönetim Kurulu Başkanı</p>
-        <p class="hero__company">FETSAN Grup</p>
+        <p class="hero__company">FETSAN GRUP</p>
       </div>
       <div class="hero__scroll" aria-hidden="true"><span>Kaydırın</span><i></i></div>
       <div class="hero__shade"></div>
@@ -92,7 +98,7 @@
       <div class="manifesto__inner">
         <p class="eyebrow eyebrow--dark">Yaklaşım</p>
         <blockquote class="manifesto__quote" data-words>Kenti dönüştürüyoruz, yaşamı güzelleştiriyoruz.</blockquote>
-        <p class="manifesto__sign">FETSAN Grup</p>
+        <p class="manifesto__sign">FETSAN GRUP</p>
       </div>
     </section>
 
@@ -105,12 +111,12 @@
             <article class="chapter">
               <span class="chapter__no">I</span>
               <h2 class="chapter__title">Sahadan gelen <em>disiplin</em></h2>
-              <p>04.10.1994 doğumlu Ümit Fettahoğlu, kariyerine aile şirketi Fettahoğlu Yapı bünyesinde aktif rol alarak başladı. Proje üretimi, şantiye yönetimi ve taahhüt süreçlerinde kazandığı deneyim; saha disiplini, organizasyon kabiliyeti ve iş geliştirme yaklaşımıyla daha büyük ölçekli yapılanmaların temelini oluşturdu.</p>
+              <p>04.10.1994 doğumlu Ümit FETTAHOĞLU, kariyerine aile şirketi FETTAHOĞLU Yapı bünyesinde aktif rol alarak başladı. Proje üretimi, şantiye yönetimi ve taahhüt süreçlerinde kazandığı deneyim; saha disiplini, organizasyon kabiliyeti ve iş geliştirme yaklaşımıyla daha büyük ölçekli yapılanmaların temelini oluşturdu.</p>
             </article>
             <article class="chapter">
               <span class="chapter__no">II</span>
-              <h2 class="chapter__title">FETSAN Grup’un <em>kuruluşu</em></h2>
-              <p>Ahmet Sancaktutan ile güçlerini birleştirerek FETSAN Grup’un kuruluşuna liderlik etti ve şirketin kısa sürede yüksek ivme yakalamasında belirleyici rol oynadı. Kentsel dönüşüm alanında hızla büyüyen FETSAN Grup, yüz binlerce metrekareyi bulan inşaat alanlarında çok paydaşlı, ölçekli projeleri başarıyla yönetti.</p>
+              <h2 class="chapter__title">FETSAN GRUP’un <em>kuruluşu</em></h2>
+              <p>Ahmet Sancaktutan ile güçlerini birleştirerek FETSAN GRUP’un kuruluşuna liderlik etti ve şirketin kısa sürede yüksek ivme yakalamasında belirleyici rol oynadı. Kentsel dönüşüm alanında hızla büyüyen FETSAN GRUP, yüz binlerce metrekareyi bulan inşaat alanlarında çok paydaşlı, ölçekli projeleri başarıyla yönetti.</p>
             </article>
             <article class="chapter">
               <span class="chapter__no">III</span>
@@ -123,7 +129,7 @@
         <figure class="bio__portrait">
           <div class="arch">
             <img class="arch__bg" src="assets/img/bg-arch.webp" width="1024" height="1024" alt="" loading="lazy" decoding="async">
-            <img class="arch__figure" src="assets/img/figure-stage.webp?v=2" width="497" height="481" alt="Ümit Fettahoğlu kürsüde" loading="lazy" decoding="async">
+            <img class="arch__figure" src="assets/img/figure-stage.webp?v=2" width="497" height="481" alt="Ümit FETTAHOĞLU kürsüde" loading="lazy" decoding="async">
           </div>
           <figcaption>Kurucu Ortak &amp; Yönetim Kurulu Başkanı</figcaption>
         </figure>
@@ -150,7 +156,7 @@
 
     <!-- V. Projeler (yatay sahne) -->
     <section class="projects theme-paper" id="projeler" data-chapter="IV" data-chapter-label="Projeler">
-      <div class="projects__progress" aria-hidden="true"><span class="projects__count">01</span><i><b></b></i><span>07</span></div>
+      <div class="projects__progress" aria-hidden="true"><span class="projects__count">01</span><i><b></b></i><span>05</span></div>
       <div class="projects__track">
         <div class="projects__intro">
           <p class="eyebrow">Seçili Projeler</p>
@@ -165,25 +171,17 @@
           <div class="pcard__media"><img src="assets/img/p-madimak.webp" srcset="assets/img/p-madimak-m.webp 900w, assets/img/p-madimak.webp 1600w" sizes="(max-width: 900px) 92vw, 30vw" width="1600" height="1131" alt="Madımak Sitesi" loading="lazy" decoding="async"></div>
           <div class="pcard__info"><span>02 — Site Projesi</span><h3>Madımak Sitesi</h3><p>Küçükçekmece, İstanbul</p></div>
         </a>
-        <a class="pcard" href="https://fetsangrup.com/projelerimiz/sogut-bulut-apartman/" target="_blank" rel="noopener noreferrer">
-          <div class="pcard__media"><img src="assets/img/p-sogut-bulut.webp" srcset="assets/img/p-sogut-bulut-m.webp 900w, assets/img/p-sogut-bulut.webp 1600w" sizes="(max-width: 900px) 92vw, 44vw" width="1600" height="900" alt="Söğüt Bulut Apartman" loading="lazy" decoding="async"></div>
-          <div class="pcard__info"><span>03 — Konut Projesi</span><h3>Söğüt Bulut Apartman</h3><p>Bahçelievler, İstanbul</p></div>
+        <a class="pcard" href="https://fetsangrup.com/projelerimiz/otuken-sitesi/" target="_blank" rel="noopener noreferrer">
+          <div class="pcard__media"><img src="assets/img/p-otuken.webp" srcset="assets/img/p-otuken-m.webp 900w, assets/img/p-otuken.webp 1536w" sizes="(max-width: 900px) 92vw, 44vw" width="1536" height="912" alt="Ötüken Sitesi" loading="lazy" decoding="async"></div>
+          <div class="pcard__info"><span>03 — Site Projesi</span><h3>Ötüken Sitesi</h3><p>Küçükçekmece, İstanbul</p></div>
         </a>
-        <a class="pcard pcard--tall" href="https://fetsangrup.com/projelerimiz/deniz-apartman/" target="_blank" rel="noopener noreferrer">
-          <div class="pcard__media"><img src="assets/img/p-deniz.webp" srcset="assets/img/p-deniz-m.webp 900w, assets/img/p-deniz.webp 1600w" sizes="(max-width: 900px) 92vw, 30vw" width="1600" height="1113" alt="Deniz Apartman" loading="lazy" decoding="async"></div>
-          <div class="pcard__info"><span>04 — Konut Projesi</span><h3>Deniz Apartman</h3><p>Bahçelievler, İstanbul</p></div>
+        <a class="pcard pcard--tall" href="https://fetsangrup.com/projelerimiz/bayramoglu-sitesi/" target="_blank" rel="noopener noreferrer">
+          <div class="pcard__media"><img src="assets/img/p-bayramoglu.webp" srcset="assets/img/p-bayramoglu-m.webp 900w, assets/img/p-bayramoglu.webp 1600w" sizes="(max-width: 900px) 92vw, 30vw" width="1600" height="900" alt="Bayramoğlu Sitesi" loading="lazy" decoding="async"></div>
+          <div class="pcard__info"><span>04 — Site Projesi</span><h3>Bayramoğlu Sitesi</h3><p>Bahçelievler, İstanbul</p></div>
         </a>
-        <a class="pcard" href="https://fetsangrup.com/projelerimiz/turkmen-apartman/" target="_blank" rel="noopener noreferrer">
-          <div class="pcard__media"><img src="assets/img/p-turkmen.webp" srcset="assets/img/p-turkmen-m.webp 900w, assets/img/p-turkmen.webp 1600w" sizes="(max-width: 900px) 92vw, 44vw" width="1600" height="900" alt="Türkmen Apartman" loading="lazy" decoding="async"></div>
-          <div class="pcard__info"><span>05 — Konut Projesi</span><h3>Türkmen Apartman</h3><p>Bahçelievler, İstanbul</p></div>
-        </a>
-        <a class="pcard pcard--tall" href="https://fetsangrup.com/projelerimiz/ozgur-apartman/" target="_blank" rel="noopener noreferrer">
-          <div class="pcard__media"><img src="assets/img/p-ozgur.webp" srcset="assets/img/p-ozgur-m.webp 900w, assets/img/p-ozgur.webp 1600w" sizes="(max-width: 900px) 92vw, 30vw" width="1600" height="900" alt="Özgür Apartman" loading="lazy" decoding="async"></div>
-          <div class="pcard__info"><span>06 — Konut Projesi</span><h3>Özgür Apartman</h3><p>Bahçelievler, İstanbul</p></div>
-        </a>
-        <a class="pcard" href="https://fetsangrup.com/projelerimiz/yildirim-apartmani/" target="_blank" rel="noopener noreferrer">
-          <div class="pcard__media"><img src="assets/img/p-yildirim.webp" srcset="assets/img/p-yildirim-m.webp 900w, assets/img/p-yildirim.webp 1600w" sizes="(max-width: 900px) 92vw, 44vw" width="1600" height="900" alt="Yıldırım Apartmanı" loading="lazy" decoding="async"></div>
-          <div class="pcard__info"><span>07 — Konut Projesi</span><h3>Yıldırım Apartmanı</h3><p>Bahçelievler, İstanbul</p></div>
+        <a class="pcard" href="https://fetsangrup.com/projelerimiz/bayramoglu-sitesi-2/" target="_blank" rel="noopener noreferrer">
+          <div class="pcard__media"><img src="assets/img/p-bayramoglu-2.webp" srcset="assets/img/p-bayramoglu-2-m.webp 900w, assets/img/p-bayramoglu-2.webp 1600w" sizes="(max-width: 900px) 92vw, 44vw" width="1600" height="900" alt="Bayramoğlu Sitesi 2" loading="lazy" decoding="async"></div>
+          <div class="pcard__info"><span>05 — Site Projesi</span><h3>Bayramoğlu Sitesi 2</h3><p>Bağcılar, İstanbul</p></div>
         </a>
         <a class="projects__more" href="https://fetsangrup.com/projeler" target="_blank" rel="noopener noreferrer">
           <span class="projects__more-label">Portföy</span>
@@ -253,7 +251,7 @@
     <!-- VI. Miras — genişleyen sahne -->
     <section class="scene" aria-label="1956'dan bu yana" data-chapter="VI" data-chapter-label="Miras">
       <div class="scene__frame">
-        <img src="assets/img/bg-film.webp" srcset="assets/img/bg-film-m.webp 800w, assets/img/bg-film.webp 1280w" sizes="100vw" alt="FETSAN Grup ekibi şantiye önünde" loading="lazy" decoding="async">
+        <img src="assets/img/bg-film.webp" srcset="assets/img/bg-film-m.webp 800w, assets/img/bg-film.webp 1280w" sizes="100vw" alt="FETSAN GRUP ekibi şantiye önünde" loading="lazy" decoding="async">
       </div>
       <div class="scene__caption">
         <span class="scene__year">1956</span>
@@ -268,16 +266,16 @@
     <!-- VII. Grup -->
     <section class="group theme-paper" id="grup" data-chapter="VII" data-chapter-label="Grup">
       <div class="group__head">
-        <p class="eyebrow">FETSAN Grup</p>
+        <p class="eyebrow">FETSAN GRUP</p>
         <h2 class="section-title"><span>Tek vizyon,</span><span><em>çok sektörlü</em> bir yapı.</span></h2>
-        <p class="group__lead">İnşaat ve kentsel dönüşümün yanı sıra otomotiv, tekstil ve restoran sektörlerinde yatırımlar. Ümit Fettahoğlu, bu iş kollarının kurumsal entegrasyonu, büyüme stratejileri ve operasyonel verimliliğinde aktif yönetsel sorumluluk üstleniyor.</p>
+        <p class="group__lead">İnşaat ve kentsel dönüşümün yanı sıra otomotiv, tekstil ve restoran sektörlerinde yatırımlar. Ümit FETTAHOĞLU, bu iş kollarının kurumsal entegrasyonu, büyüme stratejileri ve operasyonel verimliliğinde aktif yönetsel sorumluluk üstleniyor.</p>
       </div>
       <ol class="sectors">
         <li>
           <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-01">
             <span>01</span><h3>İnşaat &amp; Kentsel Dönüşüm</h3><b class="sector__plus" aria-hidden="true"></b>
           </button>
-          <div class="sector__panel" id="sector-01"><div><p>Grubun ana faaliyet alanı. 1956’da kurulan Fettahoğlu Yapı’nın birikimiyle İstanbul genelinde 22 parselde, yaklaşık 200.000 m² büyüklüğünde ve yaklaşık 2.000 bağımsız bölümden oluşan projeler eş zamanlı geliştiriliyor.</p></div></div>
+          <div class="sector__panel" id="sector-01"><div><p>Grubun ana faaliyet alanı. 1956’da kurulan FETTAHOĞLU Yapı’nın birikimiyle İstanbul genelinde 22 parselde, yaklaşık 200.000 m² büyüklüğünde ve yaklaşık 2.000 bağımsız bölümden oluşan projeler eş zamanlı geliştiriliyor.</p></div></div>
           <i></i>
         </li>
         <li>
@@ -305,12 +303,12 @@
           <button class="sector__toggle" type="button" aria-expanded="false" aria-controls="sector-05">
             <span>05</span><h3>Restoran</h3><b class="sector__plus" aria-hidden="true"></b>
           </button>
-          <div class="sector__panel" id="sector-05"><div><p>FETSAN Grup’un çok sektörlü yapısının bir parçası olarak restoran sektöründe yatırımlar bulunuyor.</p></div></div>
+          <div class="sector__panel" id="sector-05"><div><p>FETSAN GRUP’un çok sektörlü yapısının bir parçası olarak restoran sektöründe yatırımlar bulunuyor.</p></div></div>
           <i></i>
         </li>
       </ol>
       <ul class="brands" aria-label="Grup markaları">
-        <li><img src="assets/img/brand-fettahoglu-yapi.png" width="445" height="426" alt="Fettahoğlu Yapı" loading="lazy" decoding="async"></li>
+        <li><img src="assets/img/brand-fettahoglu-yapi.png" width="445" height="426" alt="FETTAHOĞLU Yapı" loading="lazy" decoding="async"></li>
         <li><img src="assets/img/brand-ast-mimarlik.png" width="331" height="480" alt="AST Mimarlık" loading="lazy" decoding="async"></li>
         <li class="brands__wide"><img src="assets/img/brand-fetsan-motors.png" width="480" height="29" alt="Fetsan Motors" loading="lazy" decoding="async"></li>
         <li><img src="assets/img/brand-zalluna.png" width="408" height="480" alt="Zalluna" loading="lazy" decoding="async"></li>
@@ -320,7 +318,7 @@
     <!-- VIII. Söz -->
     <section class="quote" aria-label="Söz" data-chapter="VIII" data-chapter-label="Söz">
       <figure class="quote__media">
-        <img src="assets/img/quote-portrait.webp?v=2" width="1440" height="1440" alt="Ümit Fettahoğlu sahnede, Türk bayrağının yanında" loading="lazy" decoding="async">
+        <img src="assets/img/quote-portrait.webp?v=2" width="1440" height="1440" alt="Ümit FETTAHOĞLU sahnede, Türk bayrağının yanında" loading="lazy" decoding="async">
       </figure>
       <figure class="quote__body">
         <p class="eyebrow">Söz</p>
@@ -428,8 +426,8 @@
       </div>
     </div>
     <div class="contact__bottom">
-      <a href="https://fetsangrup.com/" target="_blank" rel="noopener noreferrer" aria-label="FETSAN Grup web sitesi">
-        <img class="contact__logo" src="assets/img/logo-fetsan.png" width="348" height="83" alt="FETSAN Grup" loading="lazy" decoding="async">
+      <a href="https://fetsangrup.com/" target="_blank" rel="noopener noreferrer" aria-label="FETSAN GRUP web sitesi">
+        <img class="contact__logo" src="assets/img/logo-fetsan.png" width="348" height="83" alt="FETSAN GRUP" loading="lazy" decoding="async">
       </a>
       <nav class="social" aria-label="Sosyal medya">
         <a href="https://tr.linkedin.com/company/fetsan-grup" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -438,7 +436,7 @@
         <a href="https://www.facebook.com/fettahogluyapinsaat" target="_blank" rel="noopener noreferrer">Facebook</a>
         <a href="https://www.tiktok.com/@fetsangrup" target="_blank" rel="noopener noreferrer">TikTok</a>
       </nav>
-      <p class="contact__copy">© 2026 Ümit Fettahoğlu · FETSAN Grup</p>
+      <p class="contact__copy">© 2026 Ümit FETTAHOĞLU · FETSAN GRUP</p>
     </div>
   </footer>
 
@@ -450,7 +448,7 @@
   <script src="js/vendor/gsap.min.js" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/vendor/lenis.min.js" defer></script>
-  <script src="js/i18n.js?v=7" defer></script>
-  <script src="js/main.js?v=39" defer></script>
+  <script src="js/i18n.js?v=8" defer></script>
+  <script src="js/main.js?v=42" defer></script>
 </body>
 </html>
